@@ -16,6 +16,8 @@ export function Header() {
       <li><a href="./signup">Signup</a></li>
       <li><a href="./login">Login</a></li>
       <li><a href="#" onClick={handleClick}>Logout</a></li>
+      <li><a href="./collections">Pokedex</a></li>
+
     </ul>
   </div>
   
