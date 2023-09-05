@@ -27,8 +27,17 @@ export function Content() {
             setCollections(response.data)
         })
     }
-    
+
     useEffect(handleIndexCollections, [])
+
+    const handleDestroyCollection = (collection) => {
+         console.log("handleDestroyCollection", collection);
+         axios.delete(`http://localhost:3000/collections/${collection}.json`).then((response) => {
+           setCollections(collections.filter((c) => c.id !== collection));
+           handleClose();
+         });
+    };
+      
 
 return (
   <div>
@@ -38,7 +47,7 @@ return (
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<LogoutLink />} />
         <Route path="/" element={<RegionsIndex regions={regions}/>}  />
-        <Route path="/collections" element={<CollectionsIndex collections={collections}/>} />
+        <Route path="/collections" element={<CollectionsIndex collections={collections} onDestroyCollection={handleDestroyCollection}/>} />
     </Routes>
   </div>
   )
