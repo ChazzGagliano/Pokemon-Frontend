@@ -1,5 +1,15 @@
+import axios from "axios";
+
+
 export function RegionsIndex(props) {
-    
+        const handleAddToCollections = (pokemonId) => {
+            console.log('add to favorites')
+            console.log(pokemonId)
+            axios.post("http://localhost:3000/collections.json", {pokemon_id:pokemonId}).then(response => {
+              console.log(response.data)
+            })
+         }
+
     return (
         <div>
             {props.regions.map((region) => (
@@ -11,6 +21,7 @@ export function RegionsIndex(props) {
                     <img src={pokemon.image_url}/>
                     <p>{pokemon.ability}</p>
                     <p>Lvl: {pokemon.level}</p>
+                    <button onClick={() => handleAddToCollections(pokemon.id)} type="input">Capture</button>
                     </div>
                     ))}
                 </div>
